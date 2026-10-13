@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"
+     xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+  <title>NH Education Daily</title>
+  <description>Daily New Hampshire education policy briefing for district leaders — bills, budgets, special education, and what it all means.
+
+AI Generated</description>
+  <language>en</language>
+    <itunes:author>Kerry F. Curtis</itunes:author>
+    <itunes:category text="Education" />
+    <itunes:owner>
+      <itunes:name>Kerry F. Curtis</itunes:name>
+      <itunes:email>kerry.f.curtis@gmail.com</itunes:email>
+    </itunes:owner>
+  <itunes:explicit>false</itunes:explicit>
+  <atom:link href="https://kerrycurtis.github.io/nh-education-daily-feed/feed.xml" rel="self" type="application/rss+xml"/>
+  <itunes:image href="https://muse.ai/podcasts/media/1337692426099284/ac4c375e-b4d9-4551-86ba-b1194809d6f7/cover.png"/>
+  <image>
+    <url>https://muse.ai/podcasts/media/1337692426099284/ac4c375e-b4d9-4551-86ba-b1194809d6f7/cover.png</url>
+    <title>NH Education Daily</title>
+    <link>https://muse.ai/podcasts/feed/1337692426099284/ac4c375e-b4d9-4551-86ba-b1194809d6f7</link>
+  </image>
+  <item>
+    <title>NH Education Daily — October 13, 2026: The Tax Cap Vote and the Special Ed Squeeze</title>
+    <description>Alex and Jordan break down November 3rd&apos;s school tax cap ballot question and how it collides with the new special education funding formula taking effect in 2028.
+
+AI Generated</description>
+    <enclosure url="https://muse.ai/podcasts/media/1337692426099284/ac4c375e-b4d9-4551-86ba-b1194809d6f7/ep-d5d49f57-4ba1-4d43-be08-7fc3b99e4652.mp3" length="3057637" type="audio/mpeg"/>
+    <guid isPermaLink="false">ep-d5d49f57-4ba1-4d43-be08-7fc3b99e4652</guid>
+    <pubDate>Tue, 13 Oct 2026 04:19:13 +0000</pubDate>
+    <itunes:duration>382</itunes:duration>
+  </item>
+  <item>
+    <title>NH Education Deep Dive — The Funding Formula Rewrite: What HB 1563 Really Does</title>
+    <description>Alex and Jordan go deep on House Bill 1563, the rewrite of New Hampshire&apos;s special education aid formula — the proration crisis, who wins and loses, and the playbook for district leaders.
+
+AI Generated</description>
+    <enclosure url="https://muse.ai/podcasts/media/1337692426099284/ac4c375e-b4d9-4551-86ba-b1194809d6f7/ep-61e4b9cb-4ee1-4180-86d4-01c2abe6fdcf.mp3" length="13325413" type="audio/mpeg"/>
+    <guid isPermaLink="false">ep-61e4b9cb-4ee1-4180-86d4-01c2abe6fdcf</guid>
+    <pubDate>Tue, 13 Oct 2026 04:43:54 +0000</pubDate>
+    <itunes:duration>1665</itunes:duration>
+  </item>
+</channel>
+</rss>

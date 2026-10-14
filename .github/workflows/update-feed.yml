@@ -25,10 +25,22 @@ jobs:
           AUTHOR = "Professional Development Inc"
           OWNER_EMAIL = "kerry.f.curtis@gmail.com"
           CATEGORY = "Education"
+          # Exclude superseded original Part 1 (replaced by Revised edition).
+          EXCLUDED_GUIDS = ["ep-a495fac3-8c10-434d-b101-ea413eb0acd7"]
 
           req = urllib.request.Request(UPSTREAM, headers={"User-Agent": "Mozilla/5.0"})
           with urllib.request.urlopen(req, timeout=60) as resp:
               feed = resp.read().decode("utf-8")
+              # Remove any <item> block whose <guid> contains an excluded GUID.
+              def _remove_excluded_items(xml):
+                  def _keep(match):
+                      guid_match = re.search(r"<guid[^>]*>(.*?)</guid>", match.group(0), flags=re.S)
+                      if guid_match and any(excluded in guid_match.group(1) for excluded in EXCLUDED_GUIDS):
+                          return ""
+                      return match.group(0)
+                  return re.sub(r"<item>.*?</item>", _keep, xml, flags=re.S)
+
+              feed = _remove_excluded_items(feed)
 
           feed = re.sub(r"\s*<itunes:author>.*?</itunes:author>", "", feed, flags=re.S)
           feed = re.sub(r"\s*<itunes:category[^/]*/>", "", feed)

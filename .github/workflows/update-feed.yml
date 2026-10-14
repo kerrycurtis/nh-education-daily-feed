@@ -22,7 +22,7 @@ jobs:
 
           UPSTREAM = "https://muse.ai/podcasts/feed/1337692426099284/ac4c375e-b4d9-4551-86ba-b1194809d6f7"
           PROXY_BASE = "https://kerrycurtis.github.io/nh-education-daily-feed"
-          AUTHOR = "Kerry F. Curtis"
+          AUTHOR = "Professional Development Inc"
           OWNER_EMAIL = "kerry.f.curtis@gmail.com"
           CATEGORY = "Education"
 

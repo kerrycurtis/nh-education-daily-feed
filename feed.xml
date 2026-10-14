@@ -7,10 +7,10 @@
 
 AI Generated</description>
   <language>en</language>
-    <itunes:author>Kerry F. Curtis</itunes:author>
+    <itunes:author>Professional Development Inc</itunes:author>
     <itunes:category text="Education" />
     <itunes:owner>
-      <itunes:name>Kerry F. Curtis</itunes:name>
+      <itunes:name>Professional Development Inc</itunes:name>
       <itunes:email>kerry.f.curtis@gmail.com</itunes:email>
     </itunes:owner>
   <itunes:explicit>false</itunes:explicit>
@@ -50,6 +50,16 @@ AI Generated</description>
     <guid isPermaLink="false">ep-6a89d2db-b71b-4057-90a7-2572deac3362</guid>
     <pubDate>Tue, 13 Oct 2026 11:11:47 +0000</pubDate>
     <itunes:duration>487</itunes:duration>
+  </item>
+  <item>
+    <title>NH Education Daily — Hot Off the Press: The Ballot Decisions That Will Reshape NH School Districts</title>
+    <description>A one-hour breaking special, October 13, 2026: Three weeks before November 3, every NH voter faces Question 2 — the HB 1300 school tax cap. Alex and Jordan unpack what the ballot says vs. what RSA 32:5-i actually does, Londonderry&apos;s warning of  million in cuts, district-by-district impacts from Hudson to Oyster River to Mascenic, the failed court challenges, and what real voters are posting on social media right now — verified posts from both sides. Plus: what a levy cap means for special education&apos;s unfunded mandates.
+
+AI Generated</description>
+    <enclosure url="https://muse.ai/podcasts/media/1337692426099284/ac4c375e-b4d9-4551-86ba-b1194809d6f7/ep-38b4727c-7987-44c9-986f-9682ff4d1149.mp3" length="23305765" type="audio/mpeg"/>
+    <guid isPermaLink="false">ep-38b4727c-7987-44c9-986f-9682ff4d1149</guid>
+    <pubDate>Tue, 13 Oct 2026 19:40:35 +0000</pubDate>
+    <itunes:duration>2913</itunes:duration>
   </item>
 </channel>
 </rss>

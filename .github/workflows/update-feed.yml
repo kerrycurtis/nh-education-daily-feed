@@ -26,7 +26,7 @@ jobs:
           OWNER_EMAIL = "kerry.f.curtis@gmail.com"
           CATEGORY = "Education"
           # Exclude superseded original Part 1 (replaced by Revised edition).
-          EXCLUDED_GUIDS = ["ep-a495fac3-8c10-434d-b101-ea413eb0acd7", "ep-6908fda1-d5de-477b-9824-7f50c4d1461e", "ep-88dc2b76-23c6-4596-af26-b165bef24a95", "ep-61e4b9cb-4ee1-4180-86d4-01c2abe6fdcf"]
+          EXCLUDED_GUIDS = ["ep-a495fac3-8c10-434d-b101-ea413eb0acd7", "ep-6908fda1-d5de-477b-9824-7f50c4d1461e", "ep-88dc2b76-23c6-4596-af26-b165bef24a95", "ep-61e4b9cb-4ee1-4180-86d4-01c2abe6fdcf", "ep-175b2a47-d517-4076-b9b2-e549684fed20", "ep-35bcbcc1-162d-4b48-bb4d-5f4cb227d5d9"]
 
           req = urllib.request.Request(UPSTREAM, headers={"User-Agent": "Mozilla/5.0"})
           with urllib.request.urlopen(req, timeout=60) as resp:

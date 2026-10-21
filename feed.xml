@@ -11,16 +11,11 @@ AI Generated</description>
     <itunes:category text="Education" />
     <itunes:owner>
       <itunes:name>Professional Development Inc</itunes:name>
-      <itunes:email>kerry.f.curtis@gmail.com</itunes:email>
+      <itunes:email>educationacrossthestates@gmail.com</itunes:email>
     </itunes:owner>
   <itunes:explicit>false</itunes:explicit>
   <atom:link href="https://kerrycurtis.github.io/nh-education-daily-feed/feed.xml" rel="self" type="application/rss+xml"/>
   <itunes:image href="https://muse.ai/podcasts/media/1337692426099284/ac4c375e-b4d9-4551-86ba-b1194809d6f7/cover.png"/>
-  <image>
-    <url>https://muse.ai/podcasts/media/1337692426099284/ac4c375e-b4d9-4551-86ba-b1194809d6f7/cover.png</url>
-    <title>NH Education Daily</title>
-    <link>https://muse.ai/podcasts/feed/1337692426099284/ac4c375e-b4d9-4551-86ba-b1194809d6f7</link>
-  </image>
-  <itunes:new-feed-url>https://kerrycurtis.github.io/education-across-the-states-feed/feed.xml</itunes:new-feed-url>
+  <itunes:new-feed-url>https://education-across-the-states.github.io/education-across-the-states-feed/feed.xml</itunes:new-feed-url>
 </channel>
 </rss>

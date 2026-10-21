@@ -1,4 +1,4 @@
-name: Update Apple Podcasts feed
+name: Write redirect stub feed
 
 on:
   schedule:
@@ -9,52 +9,15 @@ permissions:
   contents: write
 
 jobs:
-  update-feed:
+  stub:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repo
         uses: actions/checkout@v4
-
-      - name: Write redirect feed.xml (feed retired; NH Education Daily moved to Education Across the States)
+      - name: Write redirect feed.xml (NH feed retired; points at the Education Across the States umbrella feed)
         run: |
-          python3 - <<'PYEOF'
-          # This feed is retired. NH Education Daily now publishes on the
-          # "Education Across the States" umbrella feed. feed.xml is a static
-          # redirect stub: channel metadata only, zero episodes, and an
-          # <itunes:new-feed-url> pointing podcast apps at the umbrella feed.
-          FEED = '''
-          <?xml version="1.0" encoding="UTF-8"?>
-          <rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"
-               xmlns:atom="http://www.w3.org/2005/Atom">
-          <channel>
-            <title>NH Education Daily</title>
-            <description>Daily New Hampshire education policy briefing for district leaders — bills, budgets, special education, and what it all means.
-
-          AI Generated</description>
-            <language>en</language>
-              <itunes:author>Professional Development Inc</itunes:author>
-              <itunes:category text="Education" />
-              <itunes:owner>
-                <itunes:name>Professional Development Inc</itunes:name>
-                <itunes:email>kerry.f.curtis@gmail.com</itunes:email>
-              </itunes:owner>
-            <itunes:explicit>false</itunes:explicit>
-            <atom:link href="https://kerrycurtis.github.io/nh-education-daily-feed/feed.xml" rel="self" type="application/rss+xml"/>
-            <itunes:image href="https://muse.ai/podcasts/media/1337692426099284/ac4c375e-b4d9-4551-86ba-b1194809d6f7/cover.png"/>
-            <image>
-              <url>https://muse.ai/podcasts/media/1337692426099284/ac4c375e-b4d9-4551-86ba-b1194809d6f7/cover.png</url>
-              <title>NH Education Daily</title>
-              <link>https://muse.ai/podcasts/feed/1337692426099284/ac4c375e-b4d9-4551-86ba-b1194809d6f7</link>
-            </image>
-            <itunes:new-feed-url>https://kerrycurtis.github.io/education-across-the-states-feed/feed.xml</itunes:new-feed-url>
-          </channel>
-          </rss>
-          '''
-          with open("feed.xml", "w", encoding="utf-8") as f:
-              f.write(FEED.strip() + "\n")
-          print("wrote redirect feed.xml (0 episodes, itunes:new-feed-url -> umbrella feed)")
-          PYEOF
-
+          cp stub-feed.xml feed.xml
+          echo "wrote redirect feed.xml (0 episodes, itunes:new-feed-url -> organization feed)"
       - name: Commit and push if changed
         run: |
           git config user.name "podcast-feed-bot"
@@ -63,6 +26,6 @@ jobs:
             echo "feed.xml unchanged, nothing to commit"
           else
             git add feed.xml
-            git commit -m "Retire NH feed: redirect to Education Across the States umbrella feed"
+            git commit -m "Redirect feed to Education Across the States organization"
             git push
           fi

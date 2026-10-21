@@ -15,67 +15,44 @@ jobs:
       - name: Check out repo
         uses: actions/checkout@v4
 
-      - name: Rebuild feed.xml from upstream
+      - name: Write redirect feed.xml (feed retired; NH Education Daily moved to Education Across the States)
         run: |
           python3 - <<'PYEOF'
-          import os, re, urllib.request
+          # This feed is retired. NH Education Daily now publishes on the
+          # "Education Across the States" umbrella feed. feed.xml is a static
+          # redirect stub: channel metadata only, zero episodes, and an
+          # <itunes:new-feed-url> pointing podcast apps at the umbrella feed.
+          FEED = '''
+          <?xml version="1.0" encoding="UTF-8"?>
+          <rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"
+               xmlns:atom="http://www.w3.org/2005/Atom">
+          <channel>
+            <title>NH Education Daily</title>
+            <description>Daily New Hampshire education policy briefing for district leaders — bills, budgets, special education, and what it all means.
 
-          UPSTREAM = "https://muse.ai/podcasts/feed/1337692426099284/ac4c375e-b4d9-4551-86ba-b1194809d6f7"
-          PROXY_BASE = "https://kerrycurtis.github.io/nh-education-daily-feed"
-          AUTHOR = "Professional Development Inc"
-          OWNER_EMAIL = "kerry.f.curtis@gmail.com"
-          CATEGORY = "Education"
-          # Exclude superseded original Part 1 (replaced by Revised edition).
-          EXCLUDED_GUIDS = ["ep-a495fac3-8c10-434d-b101-ea413eb0acd7", "ep-6908fda1-d5de-477b-9824-7f50c4d1461e", "ep-88dc2b76-23c6-4596-af26-b165bef24a95", "ep-61e4b9cb-4ee1-4180-86d4-01c2abe6fdcf", "ep-175b2a47-d517-4076-b9b2-e549684fed20", "ep-35bcbcc1-162d-4b48-bb4d-5f4cb227d5d9", "ep-c8d46634-e131-4fc7-9a40-0590a43af4bf", "ep-441d631f-1748-4ff6-b9b0-6c8e933328c4"]
-
-          req = urllib.request.Request(UPSTREAM, headers={"User-Agent": "Mozilla/5.0"})
-          with urllib.request.urlopen(req, timeout=60) as resp:
-              feed = resp.read().decode("utf-8")
-              # Remove any <item> block whose <guid> contains an excluded GUID.
-              def _remove_excluded_items(xml):
-                  def _keep(match):
-                      guid_match = re.search(r"<guid[^>]*>(.*?)</guid>", match.group(0), flags=re.S)
-                      if guid_match and any(excluded in guid_match.group(1) for excluded in EXCLUDED_GUIDS):
-                          return ""
-                      return match.group(0)
-                  return re.sub(r"<item>.*?</item>", _keep, xml, flags=re.S)
-
-              feed = _remove_excluded_items(feed)
-
-          feed = re.sub(r"\s*<itunes:author>.*?</itunes:author>", "", feed, flags=re.S)
-          feed = re.sub(r"\s*<itunes:category[^/]*/>", "", feed)
-          feed = re.sub(r"\s*<itunes:category[^>]*>.*?</itunes:category>", "", feed, flags=re.S)
-          feed = re.sub(r"\s*<itunes:owner>.*?</itunes:owner>", "", feed, flags=re.S)
-
-          tags = (
-              f"\n    <itunes:author>{AUTHOR}</itunes:author>"
-              f'\n    <itunes:category text="{CATEGORY}" />'
-              f"\n    <itunes:owner>\n      <itunes:name>{AUTHOR}</itunes:name>"
-              f"\n      <itunes:email>{OWNER_EMAIL}</itunes:email>\n    </itunes:owner>"
-          )
-          feed, n = re.subn(r"(<language>[^<]*</language>)", r"\1" + tags, feed, count=1)
-          if n == 0:
-              raise SystemExit("anchor <language> tag not found")
-
-          self_url = PROXY_BASE.rstrip("/") + "/feed.xml"
-          feed = re.sub(
-              r'(<atom:link href=")[^"]*(" rel="self")',
-              r"\g<1>" + self_url + r"\g<2>",
-              feed,
-              count=1,
-          )
-
-          def guids(text):
-              return set(re.findall(r"<guid[^>]*>(.*?)</guid>", text))
-
-          old_guids = guids(open("feed.xml", encoding="utf-8").read()) if os.path.exists("feed.xml") else set()
-          new_guids = guids(feed)
-          if old_guids == new_guids and old_guids:
-              print(f"no change ({len(new_guids)} episodes)")
-          else:
-              with open("feed.xml", "w", encoding="utf-8") as f:
-                  f.write(feed)
-              print(f"updated feed.xml ({len(new_guids)} episodes)")
+          AI Generated</description>
+            <language>en</language>
+              <itunes:author>Professional Development Inc</itunes:author>
+              <itunes:category text="Education" />
+              <itunes:owner>
+                <itunes:name>Professional Development Inc</itunes:name>
+                <itunes:email>kerry.f.curtis@gmail.com</itunes:email>
+              </itunes:owner>
+            <itunes:explicit>false</itunes:explicit>
+            <atom:link href="https://kerrycurtis.github.io/nh-education-daily-feed/feed.xml" rel="self" type="application/rss+xml"/>
+            <itunes:image href="https://muse.ai/podcasts/media/1337692426099284/ac4c375e-b4d9-4551-86ba-b1194809d6f7/cover.png"/>
+            <image>
+              <url>https://muse.ai/podcasts/media/1337692426099284/ac4c375e-b4d9-4551-86ba-b1194809d6f7/cover.png</url>
+              <title>NH Education Daily</title>
+              <link>https://muse.ai/podcasts/feed/1337692426099284/ac4c375e-b4d9-4551-86ba-b1194809d6f7</link>
+            </image>
+            <itunes:new-feed-url>https://kerrycurtis.github.io/education-across-the-states-feed/feed.xml</itunes:new-feed-url>
+          </channel>
+          </rss>
+          '''
+          with open("feed.xml", "w", encoding="utf-8") as f:
+              f.write(FEED.strip() + "\n")
+          print("wrote redirect feed.xml (0 episodes, itunes:new-feed-url -> umbrella feed)")
           PYEOF
 
       - name: Commit and push if changed
@@ -86,6 +63,6 @@ jobs:
             echo "feed.xml unchanged, nothing to commit"
           else
             git add feed.xml
-            git commit -m "Update Apple Podcasts feed"
+            git commit -m "Retire NH feed: redirect to Education Across the States umbrella feed"
             git push
           fi
